@@ -29,11 +29,12 @@ class ServerProcess:
 
         #Establish Network Connection
         sock = socket(AF_INET, SOCK_STREAM) 
-		sock.bind(('', self.port)) 
-		sock.listen(self.numberOfOrganizations) 
+	sock.bind(('', self.port)) 
+	sock.listen(self.numberOfOrganizations) 
 
-		#execute and wait for events
-		execute()
+	
+	#execute and wait for events
+	execute()
 
 
     
@@ -41,29 +42,29 @@ class ServerProcess:
     	"""This method waits for events (requests) from the clients related
     	 to upload and download and processes them"""
 
-		while True:
-			conn, addr = sock.accept()			
-			typeOfEvent = conn.recv(10) 
+	while True:
+		conn, addr = sock.accept()			
+		typeOfEvent = conn.recv(10) 
 			
-			#if download event
-			handleDownload(conn)
+		#if typeOfEvent is download event
+		handleDownload(conn)
 
-			#else if upload event
-			handleUpload(conn)
-
-
-
-	def handleDownload(self, conn):
-		"""This method handles download of a fraction of the parameters according to the devised algorith"""
-
-		#Handle Download Requests according to Figure 2.
+		#else if upload event
+		handleUpload(conn)
 
 
 
-	def handleUpload(self, conn):
-		"""This method handles upload of the gradients vectors according to the devised algorith"""
+    def handleDownload(self, conn):
+	"""This method handles download of a fraction of the parameters according to the devised algorith"""
 
-		#Handle Upload Requests according to Figure 2.
+	#Handle Download Requests according to Figure 2.
+
+
+
+    def handleUpload(self, conn):
+	"""This method handles upload of the gradients vectors according to the devised algorith"""
+
+	#Handle Upload Requests according to Figure 2.
 
 
 
