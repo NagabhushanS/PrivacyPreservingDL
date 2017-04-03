@@ -15,26 +15,26 @@ class ClientProcess:
 
 	def __init__(self, layers, nb_epochs, local_dataset):
 		#Organizations should decide on the architecture of the neural network i.e., neurons in the hidden layer
-    	#Each Client initializes its list of parameters accordingly
+    		#Each Client initializes its list of parameters accordingly
 
-    	self.layers = layers  #layers is the list of the number of neurons in the hidden layers
-        self.numLayers = len(layers)
-        self.nb_epochs = nb_epochs
-        self.local_dataset = local_dataset
+    		self.layers = layers  #layers is the list of the number of neurons in the hidden layers
+        	self.numLayers = len(layers)
+        	self.nb_epochs = nb_epochs
+        	self.local_dataset = local_dataset
 
 
-        #Initialize the parameters (biases and weights)
-        self.biases = [np.random.uniform(-4 * sqrt(6 / (layers[x - 1] + layers[x])), 4 * sqrt(6 / (layers[x - 1] + layers[x])),(layers[x], 1)) for x in range(1, self.numLayers)]
-        self.weights = [np.random.uniform(-4 * sqrt(6 / (layers[x - 1] + layers[x])), 4 * sqrt(6 / (layers[x - 1] + layers[x])),(layers[x], layers[x - 1])) for x in range(1, self.numLayers)]
+        	#Initialize the parameters (biases and weights)
+        	self.biases = [np.random.uniform(-4 * sqrt(6 / (layers[x - 1] + layers[x])), 4 * sqrt(6 / (layers[x - 1] + layers[x])),(layers[x], 1)) for x in range(1, self.numLayers)]
+        	self.weights = [np.random.uniform(-4 * sqrt(6 / (layers[x - 1] + layers[x])), 4 * sqrt(6 / (layers[x - 1] + layers[x])),(layers[x], layers[x - 1])) for x in range(1, self.numLayers)]
        
 
-      	#Initialize Stat Vector
-        self.statForBiases = [np.zeros((self.layers[x], 1)) for x in range(1, self.numLayers)]
-        self.statForWeights = [np.zeros((self.layers[x], self.layers[x - 1])) for x in range(1, self.numLayers)]
+      		#Initialize Stat Vector
+        	self.statForBiases = [np.zeros((self.layers[x], 1)) for x in range(1, self.numLayers)]
+        	self.statForWeights = [np.zeros((self.layers[x], self.layers[x - 1])) for x in range(1, self.numLayers)]
 
 
-        #Connect to the server Process
-        sock = socket(AF_INET, SOCK_STREAM)
+        	#Connect to the server Process
+        	sock = socket(AF_INET, SOCK_STREAM)
 		sock.connect((self.host, self.port)) 
 		
 
@@ -48,7 +48,7 @@ class ClientProcess:
 
 		for epoch in range(self.epochs):
             
-            #download a fraction of parameters from the server
+           		#download a fraction of parameters from the server
 			self.downloadFromServer(sock)
 
 			#run SGD on the local dataset
