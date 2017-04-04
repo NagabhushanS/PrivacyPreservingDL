@@ -2,10 +2,6 @@
 
 #Client Process
 
-"""Author: Nagabhushan S Baddi\nCentral Paramater Server Process"""
-
-#Server Process
-
 class ClientProcess:
 	"""Class representing an organization neural network client"""
 
