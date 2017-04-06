@@ -1,5 +1,8 @@
 """Author: Nagabhushan S Baddi\nOrganization Client Process"""
 
+from socket import *
+import numpy as np
+
 #Client Process
 
 class ClientProcess:
